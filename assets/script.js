@@ -3,35 +3,43 @@ const ctx = canvas.getContext("2d");
 
 let x = canvas.width / 2;
 let y = canvas.height / 2;
-
+let radius = 10;
 
 function drawBall() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
-    ctx.arc(x, y, 10, 0, Math.PI * 2);
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
     ctx.fillStyle = "hwb(0 100% 4%)";
     ctx.fill();
     ctx.closePath();
 }
 
 function moveUp() {
-    y -= 4;
+    if(y > radius) {
+    y -= 10;
     drawBall();
+    }
 }
 
 function moveDown() {
-    y += 4;
+    if(y < canvas.height - radius) {
+    y += 10;
     drawBall();
+    }
 }
 
 function moveLeft() {
-    x -= 4;
+    if(x > radius) {
+    x -= 10;
     drawBall();
+    }
 }
 
 function moveRight() {
-    x += 4;
+    if(x < canvas.width - radius) {
+    x += 10;
     drawBall();
+    }
 }
 
 
