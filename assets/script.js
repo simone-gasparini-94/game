@@ -1,49 +1,68 @@
 const canvas = document.querySelector(".canvas");
 const ctx = canvas.getContext("2d");
 
-let x = canvas.width / 2;
-let y = canvas.height / 2;
-let radius = 10;
+let xPlayer = canvas.width / 2;
+let yPlayer = canvas.height / 1.2;
+let radiusPlayer = 10;
 
-function drawBall() {
+let xCircle = canvas.width / 1.4;
+let yCircle = canvas.height / 3.5;
+let radiusCircle = 40;
+
+function drawPlayer() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.arc(xPlayer, yPlayer, radiusPlayer, 0, Math.PI * 2);
     ctx.fillStyle = "hwb(0 100% 4%)";
     ctx.fill();
     ctx.closePath();
 }
 
+function drawCircle() {
+    ctx.beginPath();
+    ctx.arc(xCircle, yCircle, radiusCircle, 0, Math.PI * 2);
+    ctx.strokeStyle = "hwb(0 100% 4%)";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.closePath();
+}
+
+
 function moveUp() {
-    if(y > radius) {
-    y -= 10;
-    drawBall();
+    if(yPlayer > radiusPlayer) {
+    yPlayer -= 16;
+    draw();
     }
 }
 
 function moveDown() {
-    if(y < canvas.height - radius) {
-    y += 10;
-    drawBall();
+    if(yPlayer < canvas.height - radiusPlayer) {
+    yPlayer += 16;
+    draw();
     }
 }
 
 function moveLeft() {
-    if(x > radius) {
-    x -= 10;
-    drawBall();
+    if(xPlayer > radiusPlayer) {
+    xPlayer -= 16;
+    draw();
     }
 }
 
 function moveRight() {
-    if(x < canvas.width - radius) {
-    x += 10;
-    drawBall();
+    if(xPlayer < canvas.width - radiusPlayer) {
+    xPlayer += 16;
+    draw();
     }
 }
 
+function draw() { 
+    drawPlayer();
+    drawCircle();
+}
 
-drawBall();
+draw();
+
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowUp") {
@@ -56,3 +75,5 @@ document.addEventListener("keydown", (event) => {
         moveRight();
     }
 })
+
+
